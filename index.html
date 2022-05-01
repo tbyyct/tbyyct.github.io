@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Dialogue speech modeling and generation</title>
+        <link rel="stylesheet" type="text/css" href="styles.css">
+        <script src="jquery-3.5.js"></script>
+    </head>
+    <body>
+<div class="container">
+    <div id="text1">Generative Spoken Dialogue Language Modeling</div>
+    <div id="intro">
+        <br>
+    </div>
+</div>
+<div class="content-container">
+    <img src="figure.png" style="width:80%">
+    <p>
+        We introduce dGSLM, the first "textless" model able to generate audio samples of naturalistic spoken dialogues.  
+        It uses recent work on unsupervised spoken unit discovery coupled with a dual-tower transformer architecture with 
+        cross-attention trained on 2000 hours of two-channel raw conversational audio (Fisher dataset) without any text or 
+        labels. It is able to generate speech, laughter and other paralinguistic signals in the two channels simultaneously 
+        and reproduces naturalistic turn taking.
+  </br>
+  </br>
+    </p>
+    <br/>
+</div>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+
+
+<div class="content-container">
+    <script src="wavesurfer.js"></script>
+<div class="content-title">Conditional Examples</div>
+<p><i>In conditional generation, the system encodes a stereo waveform prompt
+    into two parallel streams of discrete units (or pseudo-text), which are fed to the Dialogue Language Model (DLM) system,
+        a system attending to both unit streams with the help of cross-attention.
+        The DLM model then generates new pseudo-text and feed them to the decoder to produce a new waveform. 
+        The entire pipeline is trained without supervision or
+    text.</i></p> 
+    <p>Below are samples from our best model,
+    compared to the ground truth. Note that the synthesized speakers are different from the original ones, 
+    but we deliberately choose the speakers with the same gender as in original speech.<br>
+    You will hear a <b>ding</b> sound at the end of the prompt duration.</p>   
+    <table border = "1" class="inlineTable" id="Table1">
+        <col width="30">
+        <col width="300">
+        <col width="300">
+        <col width="300">
+        <col width="300">
+        <tr>
+            <td rowspan="2">ID</td>
+            <td><b><small>original speech</small></b></td>
+            <td colspan="3"><b><small>synthesized speech</small></b></td>
+        </tr>
+        <tr>
+            <td>Prompt</td>
+            <td>Ground Truth</td>
+            <td>dGSLM (Continuation 1)</td>
+            <td>dGSLM (Continuation 2)</td>
+        </tr>
+        
+        
+        <tr>
+            <th>0</th>
+            <td>
+                <div id="cell_11_header_waveform"></div>
+                <button id="cell_11_header" class="play-button-demo btn btn-primary" onclick="wavesurfer_cell_11.playPause()">
+                    <i class="fa fa-play"></i>
+                    Play
+                    /
+                    <i class="fa fa-pause"></i>
+                    Pause
+                </button>
+                <script>
+                    var wavesurfer_cell_11 = WaveSurfer.create({
+                                container: '#cell_11_header_waveform',
+                                waveColor: 'violet',
+                                progressColor: 'purple',
+                                splitChannels: true,
+                                responsive: true,
+                            });
+                    wavesurfer_cell_11.load('./audio/stereo/Prompts-Original/fe_03_11522_1s_5s.wav');
+                </script>
+           </td>
+            <td>
+                <div id="cell_12_header_waveform"></div>
+                <button id="cell_12_header" class="play-button-demo btn btn-primary" onclick="wavesurfer_cell_12.playPause()">
+                    <i class="fa fa-play"></i>
+                    Play
+                    /
+                    <i class="fa fa-pause"></i>
+                    Pause
+                </button>
+                <script>
+                    var wavesurfer_cell_12 = WaveSurfer.create({
+                                container: '#cell_12_header_waveform',
+                                waveColor: 'violet',
+                                progressColor: 'purple',
+                                splitChannels: true,
+                                responsive: true,
+                            });
+                    wavesurfer_cell_12.load('./audio/stereo/GroundTruth-Resynthesized/fe_03_11522_1s_5s.wav');
+                </script>
+           </td>
+            <td>
+                <div id="cell_13_header_waveform"></div>
+                <button id="cell_13_header" class="play-button-demo btn btn-primary" onclick="wavesurfer_cell_13.playPause()">
+                    <i class="fa fa-play"></i>
+                    Play
+                    /
+                    <i class="fa fa-pause"></i>
+                    Pause
+                </button>
+                <script>
+                    var wavesurfer_cell_13 = WaveSurfer.create({
+                                container: '#cell_13_header_waveform',
+                                waveColor: 'violet',
+                                progressColor: 'purple',
+                                splitChannels: true,
+                                responsive: true,
+                            });
+                    wavesurfer_cell_13.load('./audio/stereo/dGSLM/fe_03_11522_1s_5s_CONTINUATION3.wav');
+                </script>
+           </td>
+            <td>
+                <div id="cell_14_header_waveform"></div>
+                <button id="cell_14_header" class="play-button-demo btn btn-primary" onclick="wavesurfer_cell_14.playPause()">
+                    <i class="fa fa-play"></i>
+                    Play
+                    /
+                    <i class="fa fa-pause"></i>
+                    Pause
+                </button>
+                <script>
+                    var wavesurfer_cell_14 = WaveSurfer.create({
+                                container: '#cell_14_header_waveform',
+                                waveColor: 'violet',
+                                progressColor: 'purple',
+                                splitChannels: true,
+                                responsive: true,
+                            });
+                    wavesurfer_cell_14.load('./audio/stereo/dGSLM/fe_03_11522_1s_5s_CONTINUATION2.wav');
+                </script>
+           </td>
+        </tr>
+        <tr>
+            <th>1</th>
+            <td>
+                <div id="cell_21_header_waveform"></div>
+                <button id="cell_21_header" class="play-button-demo btn btn-primary" onclick="wavesurfer_cell_21.playPause()">
+                    <i class="fa fa-play"></i>
+                    Play
+                    /
+                    <i class="fa fa-pause"></i>
+                    Pause
+                </button>
+                <script>
+                    var wavesurfer_cell_21 = WaveSurfer.create({
+                                container: '#cell_21_header_waveform',
+                                waveColor: 'violet',
+                                progressColor: 'purple',
+                                splitChannels: true,
+                                responsive: true,
+                            });
+                    wavesurfer_cell_21.load('./audio/stereo/Prompts-Original/fe_03_11501_63s_73s.wav');
+                </script>
+           </td>
+            <td>
+                <div id="cell_22_header_waveform"></div>
+                <button id="cell_22_header" class="play-button-demo btn btn-primary" onclick="wavesurfer_cell_22.playPause()">
+                    <i class="fa fa-play"></i>
+                    Play
+                    /
+                    <i class="fa fa-pause"></i>
+                    Pause
+                </button>
+                <script>
+                    var wavesurfer_cell_22 = WaveSurfer.create({
+                                container: '#cell_22_header_waveform',
+                                waveColor: 'violet',
+                                progressColor: 'purple',
+                                splitChannels: true,
+                                responsive: true,
+                            });
+                    wavesurfer_cell_22.load('./audio/stereo/GroundTruth-Resynthesized/fe_03_11501_63s_73s.wav');
+                </script>
+           </td>
+            <td>
+                <div id="cell_23_header_waveform"></div>
+                <button id="cell_23_header" class="play-button-demo btn btn-primary" onclick="wavesurfer_cell_23.playPause()">
+                    <i class="fa fa-play"></i>
+                    Play
+                    /
+                    <i class="fa fa-pause"></i>
+                    Pause
+                </button>
+                <script>
+                    var wavesurfer_cell_23 = WaveSurfer.create({
+                                container: '#cell_23_header_waveform',
+                                waveColor: 'violet',
+                                progressColor: 'purple',
+                                splitChannels: true,
+                                responsive: true,
+                            });
+                    wavesurfer_cell_23.load('./audio/stereo/dGSLM/fe_03_11501_63s_73s.wav');
+                </script>
+           </td>
+            <td>
+                <div id="cell_24_header_waveform"></div>
+                <button id="cell_24_header" class="play-button-demo btn btn-primary" onclick="wavesurfer_cell_24.playPause()">
+                    <i class="fa fa-play"></i>
+                    Play
+                    /
+                    <i class="fa fa-pause"></i>
+                    Pause
+                </button>
+                <script>
+                    var wavesurfer_cell_24 = WaveSurfer.create({
+                                container: '#cell_24_header_waveform',
+                                waveColor: 'violet',
+                                progressColor: 'purple',
+                                splitChannels: true,
+                                responsive: true,
+                            });
+                    wavesurfer_cell_24.load('./audio/stereo/dGSLM/fe_03_11501_63s_73s_CONTINUATION1.wav');
+                </script>
+           </td>
+        </tr>
+    </table>
+</div>
+
+<div class="content-container">
+    <script src="wavesurfer.js"></script>
+<div class="content-title">Unconditional Examples</div>
+<p><i>In unconditional generation, two parallel streams of pseudo-text are sampled from the 
+    DLM and synthetized into a waveform. </i></p>
+    <p><b>Generation 1 (dGSLM)</b></p>
+    <div id="uncond_1_header_waveform"></div>
+    <button id="uncond_1_header" class="play-button-demo btn btn-primary" onclick="wavesurfer_uncond_1.playPause()">
+        <i class="fa fa-play"></i>
+        Play
+        /
+        <i class="fa fa-pause"></i>
+        Pause
+    </button>
+    <script>
+        var wavesurfer_uncond_1 = WaveSurfer.create({
+                    container: '#uncond_1_header_waveform',
+                    waveColor: 'violet',
+                    progressColor: 'purple',
+                    splitChannels: true,
+                    responsive: true,
+                });
+                wavesurfer_uncond_1.load('./audio/uncond_generation/Generation_1.wav');
+    </script>
+
+<p><b>Generation 2 (dGSLM)</b></p>
+    <div id="uncond_2_header_waveform"></div>
+    <button id="uncond_2_header" class="play-button-demo btn btn-primary" onclick="wavesurfer_uncond_2.playPause()">
+        <i class="fa fa-play"></i>
+        Play
+        /
+        <i class="fa fa-pause"></i>
+        Pause
+    </button>
+    <script>
+        var wavesurfer_uncond_2 = WaveSurfer.create({
+                    container: '#uncond_2_header_waveform',
+                    waveColor: 'violet',
+                    progressColor: 'purple',
+                    splitChannels: true,
+                    responsive: true,
+                });
+                wavesurfer_uncond_2.load('./audio/uncond_generation/Generation_2.wav');
+    </script>
+</div>
+
+<div class="content-container">
+    <div class="content-title">Conditional Samples from All Algorithms</div>
+    <div id='task-description' style="margin-bottom: 1cm;">
+        More conditional samples are provided below, with all the language models studied in the paper.  <br>
+        The specifications of all models are listed below<br>
+        <img src="figure2.PNG" style="width:60%">
+        You will also hear a <b>ding</b> sound at the end of the prompt duration.
+    </div>
+    <div id="result-div"></div>
+    
+    </div>
+
+<div id="loading-status">Loading......</div>
+
+<script>
+        var mode = 0;
+        var audio;
+        var filename = null;
+        function play(file_name) {
+            if (filename !== file_name) {
+                if (audio) {
+                    audio.pause();
+                }
+
+                audio = new Audio(file_name);
+                filename = file_name;
+                audio.play();
+            } else {
+                if (audio.paused ) {
+                    audio = new Audio(file_name);
+                    filename = file_name;
+                    audio.play();
+                } else {
+                    audio.pause();
+                }
+            }
+        }
+        function play2(file_name, button_id) {
+            var bttn_element = document.getElementById(button_id);
+            if (filename !== file_name) {
+                if (audio) {
+                    audio.pause();
+                    bttn_element.style.background = 'lightgray';
+                }
+
+                audio = new Audio(file_name);
+                filename = file_name;
+                audio.play();
+                bttn_element.style.background = 'orange';
+            } else {
+                
+                if (audio.paused ) {
+                    audio = new Audio(file_name);
+                    filename = file_name;
+                    audio.play();
+                    bttn_element.style.background = 'orange';
+                } else {
+                    audio.pause();
+                    bttn_element.style.background = 'lightgray';
+                }
+            }
+        }
+        function switchMode() {
+            if (document.getElementById("myonoffswitch").checked) {
+                mode = 0;
+            }
+            else {
+                mode = 1;
+            }
+        }
+    </script>
+
+<script>
+        /* Highlights the navigation bar button corresponding to page
+        to indicate which page a user is currently viewing.
+        */
+
+        var tasks="cond_cont";
+        var methods2names = {
+            'Prompts' : 'Prompt',
+            'GroundTruth' : 'Ground Truth',
+            'DLM4-cross_edge_duration_delayed' : 'DLM5 (dGSLM)',
+            'DLM3-cross_edge_duration' : 'DLM4',
+            'DLM2-cross_edge' : 'DLM3',
+            'DLM1-cross' : 'DLM2',
+            'DLM0' : 'DLM1',
+            'MS-TLM' : 'MS-TLM',
+        };
+        var methods = Object.keys(methods2names);
+        var root = './audio/all_models/stereo';
+        var prompt_file_list = [
+            'fe_03_11526_564s_574s',
+            'fe_03_11527_72s_82s',
+            'fe_03_11542_3s_13s',
+            'fe_03_11546_413s_423s',
+            'fe_03_11555_544s_554s',
+            'fe_03_11559_61s_71s',
+            'fe_03_11565_205s_215s',
+            'fe_03_11567_12s_22s',
+            'fe_03_11570_204s_214s',
+            'fe_03_11576_324s_334s',
+        ]
+        var sample_suffix = "_3" // The third continuation was chosen
+
+        function lock(){
+            $('#loading-status').show();
+            $('#tasks').attr('disabled', 'disabled');
+        }
+        function unlock(){
+            $('#loading-status').hide();
+            $('#tasks').removeAttr('disabled');
+        }
+
+        function preload(tasks){
+            lock();
+            $('#tasks').val(tasks);
+            $("#result-div").empty();
+            $("#result-div").append(createTable());
+            if (false) { //tasks === 'voice_conversion' || tasks === 'resynthesis') {
+                let footer = document.createElement('p');
+                footer.append('Additional information goes here.');
+                $("#result-div").append(footer);
+            }
+            unlock();
+        }
+
+        preload(tasks);
+        
+        
+        function createTable() {
+            var tableElem;
+            tableElem = document.createElement('table');
+
+            return buildContinuationTable(tableElem);
+        }
+
+        function buildContinuationTable(tableElem) {
+             var headline, colElem, rowElem;
+
+            // First row of the table
+            headline = document.createElement('tr');
+            headline.appendChild(document.createElement('td'));
+            methods.forEach((method) => {
+                colElem = document.createElement('td');
+                colElem.appendChild(document.createTextNode(methods2names[method]));
+                colElem.style.color = 'rgb(22, 38, 67)';
+                colElem.style.center = true;
+                // colElem.style.whiteSpace = 'pre';
+                headline.appendChild(colElem);
+            });
+            tableElem.appendChild(headline);
+
+            // Second row
+            headline = document.createElement('tr');
+            colElem = document.createElement('td');
+            colElem.appendChild(document.createTextNode('ID'));
+            colElem.style.color = 'rgb(22, 38, 67)';
+            colElem.style.center = true;
+            headline.appendChild(colElem);
+            colElem = document.createElement('td');
+            colElem.appendChild(document.createTextNode('original speech'));
+            colElem.style.color = 'rgb(22, 38, 67)';
+            colElem.style.center = true;
+            colElem.style.fontSize = "small";
+            colElem.style.fontWeight = "bold"
+            colElem.style.backgroundColor = 'rgb(184, 197, 219)';
+            headline.appendChild(colElem);
+            colElem = document.createElement('td');
+            colElem.appendChild(document.createTextNode('synthesized speech'));
+            colElem.style.color = 'rgb(22, 38, 67)';
+            colElem.style.center = true;
+            colElem.style.fontSize = "small";
+            colElem.style.fontWeight = "bold"
+            colElem.colSpan = methods.length-1;
+            colElem.style.backgroundColor = 'rgb(184, 197, 219)';
+            colElem.style.borderLeft = "solid"
+            colElem.style.borderLeftColor = "white"
+            headline.appendChild(colElem);
+            tableElem.appendChild(headline);
+
+            // Here comes the samples
+            var bg_color='white';
+            var txt_color='rgb(22, 38, 67)';
+            var N = prompt_file_list.length;
+            for (var j = 0; j < N; j++) {
+                rowElem = document.createElement('tr');
+                rowElem.style.backgroundColor = bg_color;
+
+                colElem = document.createElement('td');
+                colElem.appendChild(document.createTextNode(j.toString()));
+                colElem.style.color = txt_color;
+                colElem.style.center = true;
+                rowElem.appendChild(colElem);
+
+                for (var ii = 0; ii < methods.length; ii++) {
+                    colElem = document.createElement('td');
+                    var x = document.createElement("input");
+                    var button_id = "play-"+j.toString()+"-"+ii.toString();
+                    x.setAttribute("id", button_id);
+                    x.setAttribute("type", "button");
+                    x.setAttribute("value", "PLAY");
+                    var audio_path = root + "/" + methods[ii] + "/" + prompt_file_list[j] + sample_suffix + '.wav';
+                    // x.setAttribute("onclick", "play('" + audio_path + "')");
+                    x.setAttribute("onclick", "play2('" + audio_path + "','"+button_id+"')");
+                    colElem.appendChild(x);
+                    colElem.style.color = txt_color;
+                    colElem.style.center = true;
+                    rowElem.appendChild(colElem);
+                }
+
+                rowElem.style.borderBottom = "1px dotted grey"
+
+                tableElem.appendChild(rowElem);
+
+                if ((j+1) % 10 === 0) {
+                    flip = bg_color
+                    bg_color = txt_color;
+                    txt_color = flip;
+                }
+            }
+
+            return tableElem;
+        }
+
+        function fetch_result(){
+            $(window).ready(function() {
+                tasks=$("#tasks").val();
+                $("#result-div").empty();
+                $("#result-div").append(createTable());
+                if (false) { //tasks === 'voice_conversion' || tasks === 'resynthesis') {
+                    let footer = document.createElement('p');
+                    footer.append('* Additional 20 units used for pitch stream.');
+                    $("#result-div").append(footer);
+                }
+                unlock();
+            });
+            
+        }
+
+        function record(sel) {
+            lock();
+            fetch_result();
+        }
+
+        window.addEventListener('popstate', function(e) {
+            preload(e.state["tasks"]);
+        });
+
+
+    </script>
+
+<div class="content-container">
+    Sample paged based on <a style="color:rgb(22, 38, 67)"  href="https://daps.cs.princeton.edu/projects/HiFi-GAN/index.php"> HiFi-GAN</a> page.  
+</div>
+</body>
+</html>
