@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        /*Define color palette: https://mycolor.space/gradient
+        background-image: linear-gradient(to right, #896500, #a57f29, #c29a49, #deb669, #fbd389);
+        background-image: linear-gradient(to right, #362802, #624e23, #927843, #c5a465, #fbd389);
+        background-image: linear-gradient(to right, #000000, #180508, #250a0a, #310d07, #3d0f00);
+        # gray
+        background-image: linear-gradient(to right, #000000, #353535, #696969, #a1a1a1, #dedede);
+        # brown
+        background-image: linear-gradient(to right, #392200, #492c03, #593603, #6a4003, #7c4a00);
+        */
+        :root {
+            --c0: #392200;
+            --c1: #492c03;
+            --c2: #593603;
+            --c3: #7c4a00;
+            --c4: #dedede;
+        }
+        
+        
+        
+        td {
+            vertical-align: middle;
+        }
+        audio {
+            width: 20vw;
+            min-width: 100px;
+            max-width: 250px;
+          }
+        .float-div {
+            box-shadow: 0 0.5rem 1rem var(--c4);
+            padding : 3rem;
+            margin-top: 3rem;
+            margin-bottom: 3rem;
+            border-radius: 0.5rem;
+            background: white;
+        }
+        body {
+            color: var(--c0);
+            /* background-image: linear-gradient(to bottom, #ffffff, #fffbfe, #fff7f8, #fff5ef, #fdf4e5); */
+            background-image: linear-gradient(to top, #ffffff, #fffbfe, #fff7f8, #fff5ef, #fdf4e5);
+        }
+        h1 {color: var(--c1);}
+        h2 {color: var(--c2);}
+        h3 {color: var(--c3);}
+        #small-caps {
+          font-variant-caps: small-caps;
+        }  
+        p {text-align: justify;}
+    </style>
+    </head>
+
+    <div class="container float-div">
+        <div class="text-center">
+        <h1 id="small-caps">&#128362;Spot-llama&#129433;</h1>
+        <h3>A Speech+Text Generative Language Model</h3>
+        </div>
+        <br>
+        <p>
+            We introduce <a id="small-caps">Spot-llama</a>, a multimodal language model that freely 
+            mixes  text and speech, and is trained jointly with tokens extracted from both speech and text corpora. 
+            The speech tokens are based on speech units (HuBERT based), and the text tokens are BPE based. They are 
+            concatenated as a single set of tokens, and trained using a word-level interleaving method using a small 
+            speech-text parallel corpus. The resulting model displays both the semantic abilities of text models and 
+            the expressive abilities of speech models. We demonstrate that <a id="small-caps">Spot-llama</a> is able 
+            to learn new tasks in a few shot fashion across modalities (ASR, TTS, speech classification).
+        </p>
+    </div>
+    
+    <!-- <div class="container">
+        <h2>Generation samples from  <a id="small-caps">Spot-llama</a></h2>
+        <br>
+        <p>
+            We present here some samples generated from the <a id="small-caps">Spot-llama</a> model (the samples are cherry-picked).
+        </p>
+    </div> -->
+
+    <div class="container float-div">
+        <!-- <h2>Generation samples from  <a id="small-caps">Spot-llama</a></h2> -->
+        <div class="text-center">
+        <h2>Generation samples from  <a id="small-caps">Spot-llama</a> </h2>
+        </div>
+        <br>
+        <p>
+            We prompt the model with either Text or Speech, and generate with either the same or different modality.
+            <br>
+            We give the model with a tag <code>[Text]</code> or <code>[Speech]</code> to signal a change of modality.
+            The samples are cherry-picked.
+        </p>
+        <div class="table-responsive pt-3">
+            <table style="text-align: center" class="table table-hover">
+              <thead>
+                <tr>
+                  <th style="text-align: center">Prompt</th>
+                  <th style="text-align: center">Continuation</th>
+                </tr>
+              </thead>
+              <tbody>
+                  
+                <tr>
+                    <td>one two three four five</td>
+                    <td><audio controls controlslist="nodownload" src='audio/interleaving_base_175k/one_two_three_four_five_cont_speech.wav'></audio></td>
+                </tr>
+                  
+                <tr>
+                  <td><audio controls controlslist="nodownload" src='audio/interleaving_base_175k/a_b_c_d_e_prompt_orin.wav'></audio></td>
+                  <td>
+                      <p>
+                           f g h i j k l m n o p q r s t u v w x y z why don't we go back to the beginning and start all over again? Hello and welcome back to the improve your English podcast. This is episode 39 and I'm Jack from Jack Sullivan english.com and I'm Luke from Luke's English.com. And if you want to improve your English, then this is the right podcast for you because you're learning new vocabulary. You're learning new expressions and you're learning new. The grammar, and I'm sure you're learning new things about the English language and the English-speaking World from our podcast. So this is episode 39. Let's find some grammar. Okay, so I've got a great question for you. Actually. It's a question about a of grammar. And so the question is how do I know if I'm using a proper or improper sentence? So there's two kinds of sentences, right? There's the proper sentence and the improper sentence. So we need to know the difference. Okay, so I know the difference. I know how to create proper and improper sentences. But how do you know if you're creating a proper sentence or improper sentence? Okay, so in this lesson, I'm going to share with you some tips on how to create proper sentences and how to create improper sentences. So let's get right into it. Okay, so the first thing to talk about is the subject and the verb. Okay. So in this sentence, we're going to say I am going to the shop. I am going to the shop. Okay, so I am going to the shop. I am going to the shop. Now, this is a proper sentence, right? Because the subject is I and the verb is going to the shop. Okay, so that's a proper sentence and I know that that's a proper sentence because the subject and the verb are in the correct order, okay? So the subject goes before the verb and the subject and the verb need
+                      </p>
+                    </td>
+                </tr>
+                  
+                <tr>
+                    <td><audio controls controlslist="nodownload" src='audio/interleaving_base_175k/a_b_c_d_e_prompt_orin.wav'></audio></td>
+                    <td><audio controls controlslist="nodownload" src='audio/interleaving_base_175k/a_b_c_d_e_cont_speech.wav'></audio></td>
+                </tr>
+                
+                <tr>
+                    <td>The largest country in the world is</td>
+                    <td><audio controls controlslist="nodownload" src='audio/interleaving_base_175k/the_largest_country_in_the_world_is_cont_speech.wav'></audio></td>
+                </tr>
+                  
+                <tr>
+                    <td><audio controls controlslist="nodownload" src='audio/interleaving_base_175k/yellowstone_national_park_prompt_orin.wav'></audio></td>
+                    <td>
+                        <p>
+                            the northwest corner of Wyoming. It is located in the Greater Yellowstone area and is one of the most popular National Parks in the States. It is visited by over three million people each year. Yellowstone was established as the first national park in the United States on March 1st, 1872 the lake is sometimes referred to as the largest high-elevation lake in the world. It is the largest alkaline lake in the world and the second-largest freshwater lake in the United States after Lake Michigan. Yellowstone Lake is the largest high-elevation lake in the world. It is the largest alkaline lake in the world and the second-largest freshwater lake in the United States after Lake Michigan. Yellowstone Lake is the largest high-elevation lake in the world. It is the largest alkaline lake in the world and the second-largest freshwater lake in the United States after Lake Michigan. Yellowstone Lake is the largest high-elevation lake in the world. It is the largest alkaline lake in the world and the second-largest freshwater lake in the United States after Lake Michigan. Yellowstone Lake is the largest high-elevation lake in the world. It is the largest alkaline lake in the world and the second-largest freshwater lake in the United States after Lake Michigan. Yellowstone Lake is the largest high-elevation lake in the world. It is the largest alkaline lake in the world and the second-largest freshwater lake in the United States after Lake Michigan. Yellowstone Lake is the largest high-elevation lake in the world. It is the largest alkaline lake in the world and the second-largest freshwater lake in the United States after Lake Michigan. Yellowstone Lake is the largest high-elevation lake in the world. It is the largest alkaline lake in the world and the second-largest freshwater lake in the United States
+                        </p>
+                    </td>
+                </tr>
+
+                </tr>
+                  <tr>
+                    <td>Here's a story about a llama that can speak:</td>
+                    <td><audio controls controlslist="nodownload" src='audio/interleaving_base_175k/heres_a_story_about_a_llama_that_can_speak_cont_2_long.wav'></audio></td>
+                </tr>
+                
+              </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="container">
+        <h2>Comparision with other systems</h2>
+        <br>
+        <p>
+            We compare the generation obtained from the <a id="small-caps">Spot-llama</a> model and other systems.
+        </p>
+    </div>
+    
+</html>
