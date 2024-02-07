@@ -95,9 +95,11 @@
         <br>
         <p>
             We prompt the model with either Text or Speech, and generate with either the same or different modality.
-            <br>
+            
             We give the model with a tag <code>[Text]</code> or <code>[Speech]</code> to signal a change of modality.
-            The samples are cherry-picked.
+            The (cherry picked) samples illustrate the capacity
+        of the model to continue a prompt in a semantically coherent
+        fashion within or across modalities.
         </p>
         <div class="table-responsive pt-3">
             <table style="text-align: center" class="table table-hover">
@@ -164,8 +166,8 @@
         prompt content with different speaking styles to express the
         emotion. The (cherry-picked) examples show that <a
         id="small-caps">Spirit-LM-Expressive</a> is able to transfer
-        the expressive style of the prompt onto the contination across
-        a change in modality.
+        the expressive style of the prompt onto the continuation
+        within or across a change in modality.
             <br>
         </p>
         <div class="table-responsive pt-3">
@@ -180,28 +182,10 @@
               <tbody>
 
                 <!-- T -> S -->
-                <!-- positive -->
-                <tr>
-                    <td>become the god of yachts and coral reefs and the Mediterranean Sea. I'm going, it's going to be crazy, I'm so excited!</td>
-                    <td><audio controls controlslist="nodownload" src='audio/expressive/T2S_pos_1.wav'></audio></td>
-                </tr>
-                <tr>
-                    <td>That's insane. I get to try everything that you've tried and told me about for years now. I'm so excited!</td>
-                    <td><audio controls controlslist="nodownload" src='audio/expressive/T2S_pos_2.wav'></audio></td>
-                </tr>
+                <!-- happy -->
                 <tr>
                     <td>I am absolutely thrilled to be embarking on this new journey, it's going to be an incredible adventure and</td>
                     <td><audio controls controlslist="nodownload" src='audio/expressive/T2S_pos_3.wav'></audio></td>
-                </tr>
-
-                <!-- negative -->
-                <tr>
-                    <td>Is not your place in line, it is... It is... Bonk. You've been here since a minute before we started talking. I saw you. I saw you get out of that car!</td>
-                    <td><audio controls controlslist="nodownload" src='audio/expressive/T2S_neg_1.wav' type='audio/mpeg'></audio></td>
-                </tr>
-                <tr>
-                    <td>No, you're not. You didn't talk to me about this. Does your dad know about this? Did you talk to dad?</td>
-                    <td><audio controls controlslist="nodownload" src='audio/expressive/T2S_neg_2.wav'></audio></td>
                 </tr>
 
                 <!-- sad -->
@@ -242,13 +226,6 @@
                     <td><audio controls controlslist="nodownload" src='audio/expressive/S2T_neg_1.wav'></audio></td>
                     <td><audio controls controlslist="nodownload" src='audio/expressive/S2S_neg_1.wav'></audio></td>
                 </tr>
-                <!-- positive -->
-                <tr>
-                    <td><audio controls controlslist="nodownload" src='audio/expressive/S2S_pos_1_prompt.wav'></audio></td>
-                    <td><audio controls controlslist="nodownload" src='audio/expressive/S2S_pos_1_conti.wav'></audio></td>
-                </tr>
-
-
               </tbody>
             </table>
         </div>
