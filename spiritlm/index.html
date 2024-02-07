@@ -118,7 +118,7 @@
                   <td><audio controls controlslist="nodownload" src='audio/interleaving_base_175k/a_b_c_d_e_prompt_orin.wav'></audio></td>
                   <td>
                       <p>
-                           f g h i j k l m n o p q r s t u v w x y z why don't we go back to the beginning and start all over again? Hello and welcome back to the improve your English podcast. This is episode 39 and I'm Jack from Jack Sullivan english.com and I'm Luke from Luke's English.com. And if you want to improve your English, then this is the right podcast for you because you're learning new vocabulary. You're learning new expressions and you're learning new. The grammar, and I'm sure you're learning new things about the English language and the English-speaking World from our podcast. So this is episode 39. Let's find some grammar. Okay, so I've got a great question for you. Actually. It's a question about a of grammar. And so the question is how do I know if I'm using a proper or improper sentence?
+                           f g h i j k l m n o p q r s t u v w x y z why don't we go back to the beginning and start all over again? Hello and welcome back to the improve your English podcast. This is episode 39 and I'm Jack from Jack Sullivan english.com and I'm Luke from Luke's English.com. And if you want to improve your English, then this is the right podcast for you because you're learning new vocabulary. (...)
                       </p>
                     </td>
                 </tr>
@@ -159,9 +159,14 @@
         </div>
         <br>
         <p>
-            We prompt the model with an expressive prompt in either Text or Speech modality. For Speech prompt, we use the same prompt content with different speaking styles to express the emotion. We see that <a id="small-caps">Spirit-LM-Expressive</a> is able to generate the continuation in the desired style.
+            We prompt the model with an expressive prompt in either
+        Text or Speech modality. For Speech prompt, we use the same
+        prompt content with different speaking styles to express the
+        emotion. The (cherry-picked) examples show that <a
+        id="small-caps">Spirit-LM-Expressive</a> is able to transfer
+        the expressive style of the prompt onto the contination across
+        a change in modality.
             <br>
-            The samples are cherry-picked.
         </p>
         <div class="table-responsive pt-3">
             <table style="text-align: center" class="table table-hover">
@@ -171,7 +176,9 @@
                   <th style="text-align: center">Continuation</th>
                 </tr>
               </thead>
+
               <tbody>
+
                 <!-- T -> S -->
                 <!-- positive -->
                 <tr>
@@ -182,6 +189,11 @@
                     <td>That's insane. I get to try everything that you've tried and told me about for years now. I'm so excited!</td>
                     <td><audio controls controlslist="nodownload" src='audio/expressive/T2S_pos_2.wav'></audio></td>
                 </tr>
+                <tr>
+                    <td>I am absolutely thrilled to be embarking on this new journey, it's going to be an incredible adventure and</td>
+                    <td><audio controls controlslist="nodownload" src='audio/expressive/T2S_pos_3.wav'></audio></td>
+                </tr>
+
                 <!-- negative -->
                 <tr>
                     <td>Is not your place in line, it is... It is... Bonk. You've been here since a minute before we started talking. I saw you. I saw you get out of that car!</td>
@@ -190,6 +202,21 @@
                 <tr>
                     <td>No, you're not. You didn't talk to me about this. Does your dad know about this? Did you talk to dad?</td>
                     <td><audio controls controlslist="nodownload" src='audio/expressive/T2S_neg_2.wav'></audio></td>
+                </tr>
+
+                <!-- sad -->
+                <tr>
+                    <td>I am so deeply saddened, it feels as if my heart is shattering into a million pieces and</td>
+                    <td><audio controls controlslist="nodownload" src='audio/expressive/T2S_neg_3.wav' type='audio/mpeg'></audio></td>
+                </tr>
+                <tr>
+                    <td>I can't believe she's gone. I don't know how to cope without her. The pain of losing her is overwhelming. I feel so lost without her</td>
+                    <td><audio controls controlslist="nodownload" src='audio/expressive/T2S_neg_5.wav' type='audio/mpeg'></audio></td>
+                </tr>
+                <!-- fear -->
+                <tr>
+                    <td>Did you hear that? What is that sound? I'm really scared. It's so dark, and that noise... it sounds so creepy.</td>
+                    <td><audio controls controlslist="nodownload" src='audio/expressive/T2S_neg_4.wav' type='audio/mpeg'></audio></td>
                 </tr>
 
                 <!-- S -> T -->
@@ -202,6 +229,23 @@
                 <tr>
                     <td><audio controls controlslist="nodownload" src='audio/expressive/S2T_neg_1.wav'></audio></td>
                     <td>Yeah, it's a movie where they're running around in the rain and it's very noisy and you have to be able to hear over that. That's not a good strategy. That's why I'm g</td>
+                </tr>
+
+                <!-- S -> S -->
+                <!-- positive -->
+                <tr>
+                    <td><audio controls controlslist="nodownload" src='audio/expressive/S2T_pos_1.wav'></audio></td>
+                    <td><audio controls controlslist="nodownload" src='audio/expressive/S2S_pos_2.wav'></audio></td>
+                </tr>
+                <!-- negative -->
+                <tr>
+                    <td><audio controls controlslist="nodownload" src='audio/expressive/S2T_neg_1.wav'></audio></td>
+                    <td><audio controls controlslist="nodownload" src='audio/expressive/S2S_neg_1.wav'></audio></td>
+                </tr>
+                <!-- positive -->
+                <tr>
+                    <td><audio controls controlslist="nodownload" src='audio/expressive/S2S_pos_1_prompt.wav'></audio></td>
+                    <td><audio controls controlslist="nodownload" src='audio/expressive/S2S_pos_1_conti.wav'></audio></td>
                 </tr>
 
 
