@@ -58,48 +58,28 @@
         <div class="text-center">
         <h1 id="small-caps">&#128293;SpiRit-LM</h1>
         <h3>Interleaved Spoken and Written Language Model</h3>
-        <h6 style="color: var(--c1)">
-            [<a href="#", target='_blank'>Paper</a>]
-
-        </h6>
         </div>
-
-        <p style="text-align: center; font-style: italic;">
-            Tu Anh Nguyen<sup>a,1,2</sup>, Benjamin Muller<sup>a,1</sup>, Bokai Yu<sup>a,1</sup>, <br>
-            Marta R. Costa-jussa<sup>b,1</sup>, Maha Elbayad<sup>b,1</sup>, Sravya Popuri<sup>b,1</sup>, <br>
-            Paul-Ambroise Duquenne<sup>b,1</sup>, Robin Algayres<sup>b,3</sup>, Ruslan Mavlyutov<sup>b,1</sup>, Itai Gat<sup>b,1</sup>, <br>
-            Gabriel Synnaeve<sup>c,1</sup>, Juan Pino<sup>c,1</sup>, Benoît Sagot<sup>c,2</sup>, Emmanuel Dupoux<sup>c,1,3</sup> <br>
-        </p>
+        <br>
         <p style="text-align: center; font-weight: bold;">
-            <sup>1</sup>Meta AI, &nbsp; <sup>2</sup>Inria, Paris, &nbsp; <sup>3</sup>EHESS, ENS-PSL, CNRS, Paris
-        </p>
-        <p style="text-align: center;">
-            <tt>{ntuanh, benjaminmuller, bokai, dpx}@meta.com</tt>
-        </p>
-        <p style="text-align: center; font-style: italic;">
-            <sup>a,b,c</sup>Equally contributed as co-first, co-second and co-last authors, resp.
+            Anonymous TACL submission
         </p>
         <br>
         <p>
             We introduce <a id="small-caps">SpiRit-LM</a>, a foundation multimodal language model
-            that freely mixes text and speech, and is trained jointly with tokens extracted from both speech and
-            text corpora. The speech tokens are based on speech units independently capturing semantics, and for
-            the expressive version, pitch, and style information, while the text is encoded with subword BPE tokens.
-            They are concatenated as a single set of tokens, and trained with a word-level interleaving method using
-            a small automatically-curated speech-text parallel corpus. The resulting model displays both the semantic
-            abilities of text models and the expressive abilities of speech models. Additionally, we demonstrate that
-            <a id="small-caps">SpiRit-LM</a> is able to learn new tasks in a few-shot fashion across modalities
-            (i.e. ASR, TTS, Speech Classification).
+            that freely mixes text and speech. Our model is based on a pretrained text language
+            model that we extend to the speech modality by continuously training it on text and
+            speech units. Speech and text sequences are concatenated as a single set of tokens,
+            and trained with a word-level interleaving method using a small automatically-curated
+            speech-text parallel corpus. <a id="small-caps">SpiRit-LM</a> comes in two versions:
+            a <a id="small-caps">Base</a> version that uses speech semantic units and an
+            <a id="small-caps">Expressive</a> version that models expressivity using pitch and
+            style units in addition to the semantic units. For both versions, the text is encoded
+            with subword BPE tokens. The resulting model displays both the semantic abilities of
+            text models and the expressive abilities of speech models. Additionally, we demonstrate
+            that <a id="small-caps">SpiRit-LM</a> is able to learn new tasks in a few-shot fashion
+            across modalities (i.e. ASR, TTS, Speech Classification).
         </p>
     </div>
-
-    <!-- <div class="container">
-        <h2>Generation samples from  <a id="small-caps">Spot-llama</a></h2>
-        <br>
-        <p>
-            We present here some samples generated from the <a id="small-caps">Spot-llama</a> model (the samples are cherry-picked).
-        </p>
-    </div> -->
 
     <div class="container float-div">
         <div class="text-center">
@@ -109,7 +89,6 @@
     </div>
 
     <div class="container float-div">
-        <!-- <h2>Generation samples from  <a id="small-caps">Spot-llama</a></h2> -->
         <div class="text-center">
         <h2>Generation samples from  <a id="small-caps">SpiRit-LM-Base</a> </h2>
         </div>
